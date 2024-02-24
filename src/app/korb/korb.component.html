@@ -1,0 +1,66 @@
+<div class="justify-content-center row row-cols-2">
+  <div class="container col-md-3 ">
+    @for (ware of korb; track $index) {
+    <div class="card mb-3" style="max-width: 540px">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="{{ ware.img }}" class="img-fluid rounded-start" alt="..." />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{ ware.name }}</h5>
+            <p class="card-text">{{ ware.beschreibung }}</p>
+            <p class="card-text">€{{ ware.preis }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    } @empty {
+    <div>Warenkorb ist Leer!</div>
+    } <a routerLink="/produkte" class="btn btn-primary ms-2">Produkte</a>
+    <button
+      *ngIf="korb.length > 0"
+      class="btn btn-danger ms-2"
+      (click)="clear()"
+    >
+      Entfernen
+    </button>
+  </div>
+  <div class="container col-md-3 ">
+    <ul class="list-group list-group-horizontal">
+      <li class="list-group-item">Summary</li>
+    </ul>
+    <ul class="list-group list-group-horizontal">
+      <li class="list-group-item">Produkte</li>
+      <li class="list-group-item">€{{ getSumme().toFixed(2) }}</li>
+    </ul>
+    <ul class="list-group list-group-horizontal">
+      <li class="list-group-item">Service</li>
+      <li class="list-group-item">€{{ getService().toFixed(2) }}</li>
+    </ul>
+    <ul class="list-group list-group-horizontal">
+      <li class="list-group-item">Rabatt</li>
+      <li class="list-group-item">€{{ getRabatt().toFixed(2) }}</li>
+    </ul>
+    <ul class="list-group list-group-horizontal">
+      <li class="list-group-item">Total amount (inc VAT)</li>
+      <li class="list-group-item">€{{ getAll().toFixed(2) }}</li>
+    </ul>
+  </div>
+</div>
+<div class="container">
+  <form>
+    <h4>Order From</h4>
+    <p>please fill up the into for the delivery</p>
+   
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+      </div>
+      <div class="form-group">
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" placeholder="Enter your address" required>
+      </div>
+      <button class="knopf" type="submit">Purchase</button>
+    </form>
+</div>

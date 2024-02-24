@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row row-cols-3">
+    <div class="card" *ngFor="let produkt of ware">
+      <img src="{{ produkt.img }}" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">{{ produkt.name }}</h5>
+        <p class="card-text">{{ produkt.beschreibung }}</p>
+        <hr class="border border-secondary border-2 opacity-20" />
+        <p class="card-text">€{{ produkt.preis }}</p>
+        <hr class="border border-secondary border-2 opacity-20" />
+        @if (produkt.verfuegbar) {
+        <a routerLink="/details/{{ produkt.id }}" class="btn btn-primary ms-2"
+          >Details</a
+        >
+        <button class="btn btn-success ms-2" (click)="addToCart(produkt)">
+          Bestellen
+        </button>
+        }@else {
+        <p class="text-danger">Das Produkt ist nicht Verfügbar!</p>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+

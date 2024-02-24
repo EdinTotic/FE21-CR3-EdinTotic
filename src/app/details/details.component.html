@@ -1,0 +1,20 @@
+<div class="container">
+  @if (ware) {
+  <div class="card">
+    <img src="{{ ware.img }}" class="card-img-top" alt="..." />
+    <div class="card-body">
+      <h5 class="card-title">{{ ware.name }}</h5>
+      <p class="card-text">{{ ware.beschreibung }}</p>
+      <hr class="border border-secondary border-2 opacity-20" />
+      <p class="card-text">€{{ ware.preis }}</p>
+      <hr class="border border-secondary border-2 opacity-20" />
+      <a routerLink="/produkte" class="btn btn-primary ms-2">Produkte</a>
+      <button class="btn btn-success ms-2" (click)="addToCart()">
+        zum Warenkorb hinzufügen
+      </button>
+    </div>
+  </div>
+  }@else {
+  <p>Kein Produkt gefunden!</p>
+  }
+</div>
